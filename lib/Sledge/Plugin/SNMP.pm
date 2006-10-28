@@ -17,7 +17,7 @@ sub import {
     no strict 'refs';
     *{"$pkg\::snmp"} = sub {
         my $self = shift;
-        return $self->{snmp};	# read only
+        return $self->{snmp};   # read only
     };
 
     $pkg->register_hook(
@@ -99,41 +99,35 @@ Sledge::Plugin::SNMP - Object oriented interface to SNMP
 
 =head1 DESCRIPTION
 
-SNMPプラグインは、SNMPでターゲットとするサーバリソースを取得する機能を
-提供します。addfuncで取得したいMIB(Management Information Base)とmethod
-を登録、上書きすることができます。
+Sledge::Plugin::SNMP provide the function which acquires a server resource by using SNMP.
+you can add new method or overwrite method by using the addfunc( method => MIS ).
 
 =head1 METHODS
 
-C<use Sledge::Plugin::SNMP> を宣言することで、そのクラスで C<snmp>
-メソッドが利用可能になります。C<snmp> メソッドは
-Sledge::Plugin::SNMP クラスのインスタンスへの read only accessor
-で、標準で以下のメソッドを実装しています。
+this plugin have the following method by the default. 
 
- C<ssCpuUser()>
- C<ssCpuSystem()>
- C<ssCpuIdle()>
- C<laLoad1()>
- C<laLoad2()>
- C<laLoad3()>
- C<memTotalSwap()>
- C<memAvailSwap()>
- C<memTotalReal()>
- C<memAvailReal()>
- C<memTotalFree()>
- C<memShared()>
- C<memBuffer()>
- C<memCached()>
- C<addfunc( method => MIS )>
+ ssCpuUser()
+ ssCpuSystem()
+ ssCpuIdle()
+ laLoad1()
+ laLoad2()
+ laLoad3()
+ memTotalSwap()
+ memAvailSwap()
+ memTotalReal()
+ memAvailReal()
+ memTotalFree()
+ memShared()
+ memBuffer()
+ memCached()
+ addfunc( method = MIS )
 
-また、Config/_common.pm で Net::SNMP クラスのインスタンスを生成するため
-の引数を以下のように定義しておく必要があります。引数の詳細は Net::SNMP 
-を参照下さい。
+you must write config in Config/_common.pm, like this.
 
 $C{SNMP} = {
-	-hostname  =&gt; 'localhost',
-	-community =&gt; 'public',
-	-port      =&gt; 161 
+    -hostname  => 'localhost',
+    -community => 'public',
+    -port      => 161 
 };
 
 =head1 AUTHOR
@@ -142,7 +136,7 @@ TSUNODA Kazuya <drk@drk7.jp>
 
 =head1 SEE ALSO
 
-pnotes in L<Net::SNMP>
+L<Net::SNMP>
 
 =cut
 
